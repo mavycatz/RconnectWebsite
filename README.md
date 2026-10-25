@@ -1,19 +1,26 @@
-# Rconnect Website
+# R-CONNECT
+### Transportation Management System for RPMVFMPC
 
-Rconnect is a transportation management system with admin, passenger, driver, and finance modules.
+R-CONNECT is a transportation management system developed for the
+Rizal Public Market Vendors and Farmers Multi-Purpose Cooperative
+(RPMVFMPC).
 
-## Features
-- Admin dashboard for fleet/operations management
-- Passenger portal for booking and trip tracking
-- Driver/mobile interfaces
-- Finance module with reports, analytics, and remittances
-- Real-time trip monitoring and GPS integration
+## Live Website
+https://rconnecttms.online
 
-## Setup
-1. Configure your web server (Apache/Nginx) to serve the project root
-2. Import database schema as needed
-3. Configure environment/settings in the relevant config files
-4. Run composer install if using dependencies
+## Technology Stack
+- PHP 8.3
+- MySQL
+- JavaScript, HTML, and CSS
+- Bootstrap and Font Awesome
+- React Native
+- Expo
 
-## License
-All rights reserved.
+## Main Modules
+- Administration
+- Passenger Management
+- Dispatch Management
+- Driver Mobile Application
+- Inspector Mobile Application
+- Finance Management
+- Reports and Analytics
