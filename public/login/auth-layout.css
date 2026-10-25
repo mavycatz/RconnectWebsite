@@ -1,0 +1,273 @@
+/* =============================================================
+   SHARED AUTH LAYOUT  (R-Connect TMS)
+   =============================================================
+   Single source of card layout for the five authentication pages:
+     Login, Verify OTP, Forgot Password, Reset Password, Verify Reset OTP
+
+   Root-cause fixes for horizontal overflow:
+   - box-sizing: border-box on the shell, card, and every card child
+   - no fixed widths / min-width / absolute right offsets / fixed heights
+   - width:100% bounded by max-width so the card always fits the viewport
+   - fully responsive (desktop right-placed, centered <=900px)
+
+   Reduced-motion safe.
+   ============================================================= */
+
+/* ---------- Page shell ---------- */
+.auth-page {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 24px 80px 24px 16px;
+}
+
+/* ---------- Card ---------- */
+.auth-card {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 520px;
+    background: rgba(250, 243, 218, 0.95);
+    border: 1.5px solid #545454;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.auth-card > * {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* ---------- Inner form panel ---------- */
+.auth-inner {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    height: auto;
+    background: #faf6ed;
+    border: 1px solid #8f8e8e;
+    border-radius: 12px;
+    position: relative;
+    margin-top: 12px;
+    padding: 44px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: visible;
+}
+
+.auth-inner > * {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.auth-inner form {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* ---------- Input row (icon chip + field) ---------- */
+.auth-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.auth-field .form-control {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* ---------- Icon chip next to inputs ---------- */
+.input-icon {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    background: #faf3da;
+    padding: 0 1rem;
+    border-radius: 8px 0 0 8px;
+    border: 0.5px solid #e5e0a4;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-icon i {
+    color: #4b794d;
+    font-size: 1.2rem;
+}
+
+/* ---------- Floating panel title badge (straddles the form's top border) ---------- */
+.auth-badge {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: auto;
+    max-width: 100%;
+    white-space: nowrap;
+    background: #fffaf3;
+    border-radius: 10px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid #e5e0a4;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-badge > * {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.auth-badge-icon {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #094b03, #8fad49);
+}
+
+.auth-badge-icon i {
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.auth-badge-icon img {
+    width: 15px;
+    height: auto;
+    display: block;
+}
+
+.auth-badge-text {
+    font-weight: 500;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Auth page heading ---------- */
+.auth-title {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #03580a;
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
+/* ---------- Primary action button ---------- */
+.action-btn {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    background: linear-gradient(135deg, #b6bb5f, #0e7f00);
+    color: #fff;
+    border: none;
+    height: 42px;
+    font-weight: 600;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: opacity 0.15s ease;
+}
+
+.action-btn:disabled,
+.action-btn[aria-busy='true'] {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.action-btn:hover:not(:disabled):not([aria-busy='true']) {
+    opacity: 0.92;
+}
+
+.action-btn .auth-spinner {
+    border-color: rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+}
+
+/* ---------- Themed full-page loader overlay (auth navigation) ---------- */
+.auth-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(250, 243, 218, 0.45);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+.auth-loader .auth-spinner {
+    width: 44px;
+    height: 44px;
+    border-width: 4px;
+}
+
+/* ---------- Responsive shell: center the card below 900px ---------- */
+@media (max-width: 900px) {
+    .auth-page {
+        justify-content: center;
+        padding: 24px 16px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .auth-card {
+        padding: 20px 16px;
+    }
+    .auth-inner {
+        padding: 40px 14px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-badge {
+        padding: 7px 10px;
+        gap: 8px;
+        white-space: normal;
+        text-align: center;
+    }
+    .auth-badge-text {
+        font-size: 0.78rem;
+    }
+    .auth-title {
+        font-size: 1.35rem;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .auth-spinner {
+        animation: none;
+        border-top-color: currentColor;
+    }
+}

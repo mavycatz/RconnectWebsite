@@ -1,0 +1,16 @@
+{
+    "name": "rconnecttms/app",
+    "description": "RConnect TMS Application",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "google/cloud-vision": "^2.2",
+        "dompdf/dompdf": "^3.1",
+        "phpoffice/phpspreadsheet": "^5.7",
+        "smalot/pdfparser": "^2.12"
+    }
+}

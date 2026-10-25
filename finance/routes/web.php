@@ -1,0 +1,1 @@
+$router->get('/finance', 'Finance\Controllers\DashboardController@index');

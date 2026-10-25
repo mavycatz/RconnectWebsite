@@ -1,0 +1,6 @@
+"autoload": {
+    "psr-4": {
+        "App\\": "app/",
+        "PHPMailer\\PHPMailer\\": "app/Core/PHPMailer/src/"
+    }
+^^^^^KKK6k}ssh -p 65002 u292726748@153.92.9.239

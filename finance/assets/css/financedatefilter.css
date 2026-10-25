@@ -1,0 +1,231 @@
+/* Shared Finance period filter — compact segmented control + header summary. */
+
+.fin-period-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 0;
+    padding: 3px 10px 3px 8px;
+    background: #eef4ee;
+    border: 1px solid #d7e5d8;
+    border-radius: 999px;
+    color: #2e4836;
+    font-weight: 600;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.fin-period-summary::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 12px;
+    height: 12px;
+    background-color: #4d7a5c;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.fin-period-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.fin-period-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.fin-period-bar {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1px;
+    padding: 3px;
+    background: linear-gradient(180deg, #fffdf4 0%, #faf9e5 100%);
+    border: 1px solid #e3dfa2;
+    border-radius: 999px;
+    box-shadow:
+        0 1px 2px rgba(41, 87, 56, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.fin-period-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    color: #5f7b64;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.72rem;
+    line-height: 1;
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+}
+
+.fin-period-btn i {
+    font-size: 0.7rem;
+    opacity: 0.85;
+    transition: opacity 0.18s ease;
+}
+
+.fin-period-btn:hover {
+    background: #f1efd4;
+    color: #295738;
+}
+
+.fin-period-btn:active {
+    transform: translateY(1px);
+}
+
+.fin-period-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(41, 87, 56, 0.18);
+}
+
+.fin-period-btn.active {
+    background: linear-gradient(135deg, #2f4f3a 0%, #295738 100%);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(41, 87, 56, 0.28);
+}
+
+.fin-period-btn.active i {
+    opacity: 1;
+}
+
+.fin-period-btn:disabled,
+.fin-date-input:disabled,
+.fin-custom-apply:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.fin-custom-range {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 4px 3px 10px;
+    background: #fffdf6;
+    border: 1px dashed #d6cf8f;
+    border-radius: 999px;
+    animation: fin-period-slide-in 0.18s ease;
+}
+
+.fin-custom-range[hidden] {
+    display: none;
+}
+
+@keyframes fin-period-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.fin-custom-sep {
+    color: #b9b78a;
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+.fin-date-input {
+    border: 1px solid transparent;
+    background: #f6f4e0;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #295738;
+    padding: 4px 8px;
+    width: 112px;
+    outline: none;
+    color-scheme: light;
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.fin-date-input:hover {
+    background: #f0eed6;
+}
+
+.fin-date-input:focus {
+    background: #fff;
+    border-color: #295738;
+    box-shadow: 0 0 0 3px rgba(41, 87, 56, 0.14);
+}
+
+.fin-custom-apply {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: linear-gradient(135deg, #2f4f3a, #295738);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(41, 87, 56, 0.22);
+    transition:
+        filter 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.15s ease;
+}
+
+.fin-custom-apply:hover {
+    filter: brightness(1.06);
+    box-shadow: 0 3px 8px rgba(41, 87, 56, 0.28);
+}
+
+.fin-custom-apply:active {
+    transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+    .fin-period-bar {
+        border-radius: 14px;
+    }
+
+    .fin-period-btn {
+        padding: 5px 8px;
+        font-size: 0.68rem;
+    }
+
+    .fin-custom-range {
+        border-radius: 14px;
+    }
+
+    .fin-date-input {
+        width: 104px;
+    }
+
+    .fin-period-summary {
+        white-space: normal;
+    }
+}

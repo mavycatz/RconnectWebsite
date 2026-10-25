@@ -1,0 +1,29 @@
+RewriteEngine On
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+<IfModule mod_authz_core.c>
+    CGIPassAuth On
+</IfModule>
+
+# Allow diagnostic files
+RewriteRule ^diag\.php$ - [L]
+RewriteRule ^debug_session\.php$ - [L]
+
+# Block direct access to other PHP files
+RewriteCond %{THE_REQUEST} \.php[\s?] [NC]
+RewriteRule ^ - [F]
+
+# Allow existing static assets (images, css, js, json, etc.) through
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^ - [L]
+
+# Route everything else to the front controller
+# Pass the full path as 'dispatcher_route' query param so index.php always receives it
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?dispatcher_route=$1 [QSA,L]
+
+<FilesMatch "(^\.|config|db_credentials)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

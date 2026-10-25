@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+.content, .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 0;
+    margin-top: 60px;
+    transition: margin-left 0.3s ease;
+}
+
+.content.sidebar-shown,
+.main-content.sidebar-shown {
+    margin-left: 220px;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+}

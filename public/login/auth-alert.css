@@ -1,0 +1,222 @@
+/* =============================================================
+   SHARED AUTH ALERT COMPONENT  (R-Connect TMS)
+   =============================================================
+   Used consistently on Login, Verify OTP, Forgot Password,
+   Reset Password, and Verify Reset OTP.
+
+   Guarantees:
+   - box-sizing: border-box
+   - never overflows the auth card (max-width:100%; overflow-wrap:anywhere)
+   - responsive at desktop / tablet / 768 / 600 / 480 / mobile
+   - long messages wrap fully (text is never hidden)
+   - icon stays aligned and shrinks on small screens
+================================================================= */
+
+.auth-alert {
+    --ac-bg: #fdf3ea;
+    --ac-border: #f0c9b4;
+    --ac-icon-bg: #f3d9c7;
+    --ac-icon-color: #b2431f;
+    --ac-title: #7a2e14;
+    --ac-detail: #9a5a3c;
+
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 100%;
+    background: var(--ac-bg);
+    border: 1px solid var(--ac-border);
+    border-radius: 11px;
+    padding: 10px 12px;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    margin: 0 0 14px 0;
+    overflow-wrap: anywhere;
+}
+
+.auth-alert--icon {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ac-icon-bg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    line-height: 0;
+}
+
+.auth-alert--icon i {
+    color: var(--ac-icon-color);
+    font-size: 0.88rem;
+    line-height: 1;
+}
+
+.auth-alert--body {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.auth-alert--title {
+    box-sizing: border-box;
+    max-width: 100%;
+    color: var(--ac-title);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.auth-alert--detail {
+    box-sizing: border-box;
+    max-width: 100%;
+    color: var(--ac-detail);
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+/* Mono-styled countdown value (live timer) */
+.auth-alert--countdown {
+    display: inline-block;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+/* Themed CSS-only spinner ring (inline loading feedback).
+   Sized per context via .auth-loader / button overrides. */
+.auth-spinner {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(11, 105, 28, 0.25);
+    border-top-color: #0e7f00;
+    border-radius: 50%;
+    flex: 0 0 auto;
+    animation: auth-spin 0.7s linear infinite;
+}
+
+/* Loading label inside a submit button — small and subtle so it reads as a
+   status hint ("Signing in…", "Please wait…") instead of dominating the button. */
+.auth-btn-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    vertical-align: middle;
+}
+
+/* Compact spinner when used inside a submit button. */
+button .auth-spinner {
+    width: 13px;
+    height: 13px;
+    margin-right: 6px;
+    vertical-align: -2px;
+}
+
+@keyframes auth-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-spinner {
+        animation: none;
+        border-top-color: currentColor;
+    }
+}
+
+/* ---- Variants ---- */
+.auth-alert--error {
+    --ac-bg: #fdf3ea;
+    --ac-border: #f0c9b4;
+    --ac-icon-bg: #f3d9c7;
+    --ac-icon-color: #b2431f;
+    --ac-title: #7a2e14;
+    --ac-detail: #9a5a3c;
+}
+
+.auth-alert--warning {
+    --ac-bg: #fef8e7;
+    --ac-border: #f0ddb0;
+    --ac-icon-bg: #faeec9;
+    --ac-icon-color: #a16400;
+    --ac-title: #7a4d00;
+    --ac-detail: #9a6b2a;
+}
+
+.auth-alert--locked {
+    --ac-bg: #fbf0f0;
+    --ac-border: #ecc6c6;
+    --ac-icon-bg: #f3d8d8;
+    --ac-icon-color: #a03535;
+    --ac-title: #8a2b2b;
+    --ac-detail: #9a4a4a;
+}
+
+.auth-alert--expired {
+    --ac-bg: #f4f4f4;
+    --ac-border: #d8d8d8;
+    --ac-icon-bg: #e2e2e2;
+    --ac-icon-color: #6b6b6b;
+    --ac-title: #4a4a4a;
+    --ac-detail: #6b6b6b;
+}
+
+.auth-alert--info {
+    --ac-bg: #eef4fb;
+    --ac-border: #c9daf0;
+    --ac-icon-bg: #d8e6f7;
+    --ac-icon-color: #2e5e8a;
+    --ac-title: #1f4a73;
+    --ac-detail: #3f6a94;
+}
+
+.auth-alert--success {
+    --ac-bg: #edf6ee;
+    --ac-border: #c5e2ca;
+    --ac-icon-bg: #d5ecd9;
+    --ac-icon-color: #2e7d32;
+    --ac-title: #1f5d2b;
+    --ac-detail: #3f7a4a;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 575.98px) {
+    .auth-alert {
+        padding: 9px 10px;
+        gap: 8px;
+        border-radius: 9px;
+    }
+    .auth-alert--icon {
+        width: 22px;
+        height: 22px;
+    }
+    .auth-alert--icon i {
+        font-size: 0.76rem;
+    }
+    .auth-alert--title {
+        font-size: 0.78rem;
+    }
+    .auth-alert--detail {
+        font-size: 0.74rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .auth-alert--icon {
+        width: 20px;
+        height: 20px;
+    }
+    .auth-alert--title {
+        font-size: 0.76rem;
+    }
+}

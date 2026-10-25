@@ -1,0 +1,39 @@
+<input type="file" id="file">
+<button onclick="scan()">Scan ID</button>
+
+<br><br>
+
+<input type="text" id="idNumber" placeholder="ID Number">
+<input type="text" id="role" placeholder="Role">
+
+<script>
+function scan(){
+    const file = document.getElementById('file').files[0];
+
+    if(!file){
+        alert("Select an image first");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("id_image", file);
+
+    fetch("ocr.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+
+        alert(data.text);
+
+        document.getElementById("idNumber").value = data.id_number;
+        document.getElementById("role").value = data.type;
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error occurred");
+    });
+}
+</script>

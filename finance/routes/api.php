@@ -1,0 +1,1 @@
+$router->get('/api/finance/dashboard', 'Finance\Controllers\DashboardController@data');

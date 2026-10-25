@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="/admin/assets/css/navbaradmin.css">
+
+<style>
+body {
+    background: #f8f9fa;
+    font-family: "Poppins", sans-serif;
+}
+
+.container-fluid {
+    padding: 25px;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #2e4836;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+}
+
+.table tbody td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background: #f4f7f5;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: #2e4836;
+    border-color: #2e4836;
+}
+
+.btn-primary:hover {
+    background: #24402d;
+    border-color: #24402d;
+}
+
+.btn-warning {
+    color: #fff;
+}
+
+.btn-danger {
+    color: #fff;
+}
+
+.modal-content {
+    border-radius: 16px;
+    border: none;
+}
+
+.modal-header {
+    background: #2e4836;
+    color: #fff;
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #2e4836;
+    box-shadow: 0 0 0 0.2rem rgba(46, 72, 54, 0.15);
+}
+</style>

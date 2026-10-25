@@ -1,0 +1,24 @@
+{
+    "name": "RConnect",
+    "short_name": "RConnect",
+    "description": "RConnect Passenger Web App",
+    "start_url": "/passenger/login",
+    "scope": "/passenger/",
+    "display": "standalone",
+    "background_color": "#fef8f3",
+    "theme_color": "#47613b",
+    "icons": [
+        {
+            "src": "/assets/images/logo/logoR.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo/logoR.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+# =========================
+# FINANCE PAGE TOKEN ROUTE
+# =========================
+# finance/<page>/<token> → index.php?route=<page>&token=<token>
+RewriteCond %{REQUEST_URI} ^/finance/([a-zA-Z0-9_-]+)/([a-f0-9]{64})$ [NC]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-f0-9]{64})$ index.php?route=$1&token=$2 [L,QSA]
+
+# =========================
+# BLOCK DIRECT ACCESS TO INTERNAL DIRECTORIES
+# =========================
+RewriteRule ^views/ - [F,L]
+RewriteRule ^controllers/ - [F,L]
+RewriteRule ^models/ - [F,L]
+RewriteRule ^services/ - [F,L]
+RewriteRule ^routes/ - [F,L]
+RewriteRule ^engines/ - [F,L]
+RewriteRule ^validators/ - [F,L]
+
+# =========================
+# Dashboard redirect
+# =========================
+RewriteCond %{THE_REQUEST} \s/finance/dashboard\.php [NC]
+RewriteRule ^dashboard\.php$ dashboard [R=301,L]
+
+# /finance/folder/index.php → /finance/folder/
+RewriteCond %{THE_REQUEST} \s/finance/(.+)/index\.php [NC]
+RewriteRule ^ %1/ [R=301,L]
+
+# /finance/page → /finance/page.php
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]
+
+# /finance/folder/ → /finance/folder/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}/index.php -f
+RewriteRule ^(.+)/?$ $1/index.php [L]
+
+</IfModule>

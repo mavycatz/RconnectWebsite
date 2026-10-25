@@ -1,0 +1,117 @@
+/* Header */
+.login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: white;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
+}
+
+.logo-left {
+    height: 50px;
+    width: auto;
+    margin-right: 1rem;
+}
+
+.header-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #4b794d;
+}
+
+.right-header .logo-right {
+    height: 50px;
+    width: auto;
+}
+
+/* Horizontal line under header */
+.header-line {
+    border: none;
+    border-bottom: 2px solid #4b794d;
+    margin: 0;
+}
+
+/* Existing login page styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4b794d, #a8d5ba);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.login-container {
+    background: #ffffff;
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #4b794d;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4b794d;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #3a6139;
+}
+
+.error {
+    color: red;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Mobile: <768px */
+@media (max-width: 767.98px) {
+    body {
+        background: #fef8f3;
+        height: auto;
+        min-height: 100vh;
+        padding: 20px;
+        display: block;
+    }
+
+    .login-container {
+        margin-top: 0;
+        padding: 1.5rem;
+    }
+}

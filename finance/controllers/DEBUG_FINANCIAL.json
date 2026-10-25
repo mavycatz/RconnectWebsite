@@ -1,0 +1,44 @@
+{
+    "total_revenue": 428,
+    "total_passengers": 26,
+    "total_expenses": 8800,
+    "net_profit": -8372,
+    "top_routes": [
+        {
+            "destination": "Cabanatuan",
+            "total_trips": 9
+        },
+        {
+            "destination": "Kalikid Sur, Cabanatuan",
+            "total_trips": 9
+        },
+        {
+            "destination": "Mabini",
+            "total_trips": 1
+        },
+        {
+            "destination": "Aglipay",
+            "total_trips": 1
+        },
+        {
+            "destination": "Daang Sarile",
+            "total_trips": 1
+        }
+    ],
+    "payment_methods": [
+        {
+            "payment_method": "cash",
+            "total": 23
+        },
+        {
+            "payment_method": "gcash",
+            "total": 2
+        },
+        {
+            "payment_method": "hybrid",
+            "total": 1
+        }
+    ],
+    "top_driver": "Unknown",
+    "top_bus": "Unknown"
+}

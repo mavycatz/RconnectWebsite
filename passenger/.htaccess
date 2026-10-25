@@ -1,0 +1,35 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /passenger/
+
+# Dev/testing only: uncomment the next line to allow desktop browsers.
+# Never enable this in production. Alternatively add
+# PASSENGER_ALLOW_DESKTOP=true to app/config/.env
+# SetEnv PASSENGER_ALLOW_DESKTOP 1
+
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Deny direct access to PHP files except the intended entry points
+RewriteCond %{THE_REQUEST} \.php[\s?] [NC]
+RewriteCond %{REQUEST_URI} !/passenger/index\.php$
+RewriteCond %{REQUEST_URI} !/passenger/scan\.php$
+RewriteCond %{REQUEST_URI} !/passenger/webhooks/paymongo\.php$
+RewriteRule ^ - [F]
+
+# Let existing static assets through (images, json, js, css, ...)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^ - [L]
+
+# Front controller: clean routes map to the passenger index
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /passenger/index.php?route=$1 [L,QSA]

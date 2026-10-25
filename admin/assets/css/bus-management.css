@@ -1,0 +1,178 @@
+/* Bus Management — page-specific additions on top of the Role Management theme */
+
+.bus-qr-panel {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.bus-qr-canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #e5e0a4;
+    border-radius: 16px;
+    padding: 14px;
+    min-height: 220px;
+}
+
+.bus-qr-canvas canvas,
+.bus-qr-canvas img {
+    max-width: 100%;
+    height: auto;
+}
+
+.bus-qr-meta .rmg-field {
+    margin-bottom: 8px;
+}
+
+.bus-qr-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.bus-bulk-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 1px solid #f0f2e8;
+    border-radius: 10px;
+    background: #fafbf5;
+    margin-bottom: 6px;
+    font-size: .74rem;
+}
+
+.bus-bulk-row strong {
+    color: #234d31;
+}
+
+.bus-bulk-row .bus-bulk-meta {
+    color: #6b7a63;
+    font-size: .68rem;
+}
+
+.bus-archived-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid #f0f2e8;
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 8px;
+}
+
+.bus-archived-row .bus-archived-who {
+    min-width: 0;
+}
+
+.bus-archived-row .bus-archived-name {
+    font-size: .82rem;
+    font-weight: 700;
+    color: #234d31;
+}
+
+.bus-archived-row .bus-archived-sub {
+    font-size: .68rem;
+    color: #8a9a8a;
+}
+
+.bus-expiry-warning {
+    color: #b94a48;
+    font-weight: 700;
+}
+
+.bus-expiry-soon {
+    color: #9a6b12;
+    font-weight: 700;
+}
+
+@media (max-width: 991px) {
+    .bus-qr-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Bus table: proportional columns with the Actions column contained. */
+#busManagementSection,
+#busManagementSection #busList,
+#busManagementSection #busList > .rmg-table-wrap { min-width: 0; max-width: 100%; }
+
+#busManagementSection #busList > .rmg-table-wrap { overflow: hidden; }
+
+#busManagementSection #busList .rmg-table :is(th, td) { white-space: normal; overflow-wrap: anywhere; }
+
+#busManagementSection #busList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) { white-space: nowrap; }
+
+#busManagementSection #busList .rmg-table :is(.rmg-person-name, .rmg-person-sub) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+#busManagementSection #busList .rmg-table .rmg-status {
+    display: inline-block;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+}
+
+#busManagementSection #busList .rmg-table .rmg-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 2px;
+}
+
+#busManagementSection #busList .rmg-table .rmg-actions > * { flex-shrink: 0; }
+
+@media (min-width: 992px) {
+    #busManagementSection #busList > .rmg-table-wrap > .rmg-table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    #busManagementSection #busList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) { width: 138px; }
+
+    #busManagementSection #busList .rmg-table :is(th, td) { padding: 8px 6px; }
+
+    #busManagementSection #busList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) { padding-left: 4px; padding-right: 4px; }
+}
+
+@media (max-width: 1280px) {
+    #busManagementSection #busList .rmg-table tbody td { font-size: .72rem; }
+}
+
+@media (max-width: 991px) {
+    #busManagementSection #busList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) {
+        width: auto;
+        max-width: 100%;
+    }
+
+    #busManagementSection #busList .rmg-actions { flex-wrap: wrap; }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #busPrintArea,
+    #busPrintArea * {
+        visibility: visible;
+    }
+
+    #busPrintArea {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+    }
+}

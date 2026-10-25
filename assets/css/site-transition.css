@@ -1,0 +1,156 @@
+/* ============================================================
+   Site-wide page transitions (admin + finance + login)
+   Subtle fade + rise; opacity/transform only; reduced-motion safe.
+   ============================================================ */
+
+/* ---------- page entry: ordered stagger of page sections ---------- */
+@keyframes sit-page-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sit-card-enter {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* every page section enters with a fade + rise */
+.main-content > *,
+.main-content > div:only-child > * {
+    animation: sit-page-enter 0.35s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+/* timing tiers by section position: header 0ms, cards 80-260ms, charts 320-400ms, tables 400-500ms */
+.main-content > :nth-child(1),
+.main-content > div:only-child > :nth-child(1)   { --sit-tier: 0ms;   animation-delay: 0ms; }
+.main-content > :nth-child(2),
+.main-content > div:only-child > :nth-child(2)   { --sit-tier: 80ms;  animation-delay: 80ms; }
+.main-content > :nth-child(3),
+.main-content > div:only-child > :nth-child(3)   { --sit-tier: 140ms; animation-delay: 140ms; }
+.main-content > :nth-child(4),
+.main-content > div:only-child > :nth-child(4)   { --sit-tier: 200ms; animation-delay: 200ms; }
+.main-content > :nth-child(5),
+.main-content > div:only-child > :nth-child(5)   { --sit-tier: 260ms; animation-delay: 260ms; }
+.main-content > :nth-child(6),
+.main-content > div:only-child > :nth-child(6)   { --sit-tier: 320ms; animation-delay: 320ms; }
+.main-content > :nth-child(7),
+.main-content > div:only-child > :nth-child(7)   { --sit-tier: 400ms; animation-delay: 400ms; }
+.main-content > :nth-child(n+8),
+.main-content > div:only-child > :nth-child(n+8) { --sit-tier: 500ms; animation-delay: 500ms; }
+
+/* KPI stat cards: fade + rise + 0.98 scale, staggered after their section tier */
+.main-content > .stat-card-group,
+.main-content > div:only-child > .stat-card-group { animation: none; }
+.stat-card-group > .stat-item {
+    animation: sit-card-enter 0.35s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.stat-card-group > .stat-item:nth-child(1) { animation-delay: calc(var(--sit-tier, 0ms) + 0ms); }
+.stat-card-group > .stat-item:nth-child(2) { animation-delay: calc(var(--sit-tier, 0ms) + 60ms); }
+.stat-card-group > .stat-item:nth-child(3) { animation-delay: calc(var(--sit-tier, 0ms) + 120ms); }
+.stat-card-group > .stat-item:nth-child(4) { animation-delay: calc(var(--sit-tier, 0ms) + 180ms); }
+.stat-card-group > .stat-item:nth-child(5) { animation-delay: calc(var(--sit-tier, 0ms) + 240ms); }
+
+/* chart sections inside charts-wrapper: staggered after their section tier */
+.main-content > .charts-wrapper,
+.main-content > div:only-child > .charts-wrapper { animation: none; }
+.charts-wrapper > * {
+    animation: sit-page-enter 0.35s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.charts-wrapper > :nth-child(1) { animation-delay: calc(var(--sit-tier, 0ms) + 0ms); }
+.charts-wrapper > :nth-child(2) { animation-delay: calc(var(--sit-tier, 0ms) + 60ms); }
+
+/* late-arriving content (AJAX-injected cards) */
+.sit-late {
+    animation: sit-card-enter 0.3s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+/* ---------- hover / press micro-interactions ---------- */
+.stat-item:active { transform: scale(0.99); }
+.btn {
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+                transform 0.2s ease;
+}
+.btn:active { transform: scale(0.99); }
+.driver-row {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.driver-row:active { transform: scale(0.99); }
+
+/* ---------- page exit state (added by JS before navigating) ---------- */
+.sit-page-exit {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: translateY(-6px) !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+/* ---------- modals: fade backdrop + dialog scale 0.98 -> 1 ---------- */
+.modal.fade .modal-dialog {
+    transform: scale(0.98);
+    transition: transform 0.18s ease;
+}
+.modal.fade.show .modal-dialog {
+    transform: scale(1);
+}
+
+/* ---------- small interactions: dropdown menus & panels ---------- */
+@keyframes sit-menu-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.dropdown-menu.show {
+    animation: sit-menu-in 0.18s ease both;
+}
+
+/* ---------- toast notifications ---------- */
+@keyframes sit-up-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.toast.show {
+    animation: sit-up-in 0.22s ease both;
+}
+
+/* ---------- confirmation dialogs (custom alert) ---------- */
+@keyframes sit-pop-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: scale(1); }
+}
+.custom-alert-card {
+    animation: sit-pop-in 0.2s ease both;
+}
+.custom-alert-overlay {
+    transition: opacity 0.2s ease;
+}
+
+/* ---------- filter controls: soft focus transitions ---------- */
+.form-control,
+.form-select,
+select,
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* ---------- sidebar: active-state highlight transition ---------- */
+.sidebar .nav-link {
+    transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+/* ---------- reduced motion: disable all added effects ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .main-content > *, .main-content > div:only-child > *,
+    .stat-card-group > .stat-item, .charts-wrapper > *,
+    .sit-late { animation: none !important; transform: none !important; }
+    .stat-item, .btn, .driver-row { transition: none !important; transform: none !important; }
+    .sit-page-exit { animation: none !important; transition: none !important; transform: none !important; }
+    .modal.fade .modal-dialog { transition: none !important; transform: none !important; }
+    .dropdown-menu.show { animation: none !important; }
+    .toast.show { animation: none !important; }
+    .custom-alert-card { animation: none !important; }
+    .custom-alert-overlay { transition: none !important; }
+    .form-control, .form-select, select,
+    input[type="text"], input[type="date"], input[type="number"] { transition: none !important; }
+    .sidebar .nav-link { transition: none !important; }
+}

@@ -1,0 +1,448 @@
+/*
+ * Bus Dispatch Queue page styles.
+ *
+ * Layout, cards, tables, filters, modals, and alerts come from the shared
+ * role-management.css design system; this file only adds the queue-specific
+ * pieces (publication chip, position controls, eligibility warnings) plus the
+ * scoped queue table sizing and action-column containment.
+ */
+
+.dq-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: .68rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.dq-chip.is-published {
+    background: #e7f0de;
+    border-color: #b6d29a;
+    color: #295738;
+}
+
+.dq-chip.is-draft {
+    background: #fdf6ee;
+    border-color: #e5d3a4;
+    color: #7a6f12;
+}
+
+.dq-chip.is-dirty {
+    background: #fbe9e7;
+    border-color: #eccac5;
+    color: #b94a48;
+}
+
+.dq-chip.is-history {
+    background: #eef1f5;
+    border-color: #d7dde5;
+    color: #4f637a;
+}
+
+.dq-date-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    font-size: .62rem;
+    font-weight: 600;
+    color: #6f7f6f;
+}
+
+.dq-date-status.is-history,
+.dq-date-status.is-locked {
+    color: #7a6f12;
+}
+
+.dq-history-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 2px 12px;
+    padding: 9px 12px;
+    border: 1px solid #e5d3a4;
+    border-radius: 12px;
+    background: #fdf6ee;
+    color: #7a6f12;
+    font-size: .74rem;
+    font-weight: 600;
+}
+
+.dq-history-notice i {
+    flex-shrink: 0;
+}
+
+.dq-pos {
+    white-space: nowrap;
+}
+
+.dq-pos strong {
+    font-size: .8rem;
+    color: #295738;
+}
+
+.dq-grip {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 6px;
+    color: #8a9a8a;
+    cursor: grab;
+}
+
+.dq-grip:active {
+    cursor: grabbing;
+}
+
+tr[draggable="true"] {
+    cursor: grab;
+}
+
+tr[draggable="true"]:active {
+    cursor: grabbing;
+}
+
+.dq-dragging {
+    opacity: .45;
+}
+
+.dq-drop-target {
+    box-shadow: inset 0 2px 0 #295738;
+}
+
+.dq-unavailable {
+    margin-top: 16px;
+    border: 1px solid #eccac5;
+    background: #fdf1ef;
+    border-radius: 14px;
+    padding: 12px 14px;
+}
+
+.dq-unavailable-head {
+    font-size: .72rem;
+    font-weight: 600;
+    color: #b94a48;
+    margin-bottom: 8px;
+}
+
+.dq-unavailable-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dq-unavailable-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    font-size: .74rem;
+    color: #2e4836;
+}
+
+.dq-unavailable-bus {
+    font-weight: 600;
+    color: #295738;
+    min-width: 84px;
+}
+
+.dq-unavailable-plate {
+    color: #8a9a8a;
+    min-width: 84px;
+}
+
+.dq-warn {
+    font-size: .62rem;
+    color: #b94a48;
+    margin-top: 2px;
+}
+
+.dq-driver-id {
+    display: block;
+    font-size: .62rem;
+    color: #8a9a8a;
+}
+
+.dq-driver-blocked {
+    color: #b94a48;
+}
+
+.dq-trip-meta {
+    font-size: .62rem;
+    color: #8a9a8a;
+    margin-top: 2px;
+}
+
+/* Terminal-based queue: current / origin -> receiving per row, and the
+   driver's own terminal shown independently of the bus. */
+.dq-driver-terminal {
+    display: block;
+    font-size: .62rem;
+    color: #4f6b52;
+    margin-top: 2px;
+}
+
+.dq-terminal-cell {
+    min-width: 0;
+}
+
+.dq-terminal-current {
+    font-weight: 600;
+    color: #2e4836;
+}
+
+.dq-terminal-route {
+    font-size: .62rem;
+    color: #6f7f6f;
+    margin-top: 2px;
+}
+
+.dq-terminal-assigned {
+    font-size: .62rem;
+    color: #a06a2c;
+    margin-top: 2px;
+}
+
+.dq-hint {
+    margin: 14px 2px 0;
+    font-size: .72rem;
+    color: #6f7f6f;
+}
+
+.dq-hint i {
+    color: #295738;
+}
+
+.dq-history-block {
+    margin-bottom: 18px;
+}
+
+.dq-history-block:last-child {
+    margin-bottom: 0;
+}
+
+.dq-history-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 10px;
+    border-bottom: 1px solid #eef1e4;
+}
+
+.dq-history-row:last-child {
+    border-bottom: 0;
+}
+
+.dq-history-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    border-radius: 50%;
+    background: #e7f0de;
+    color: #295738;
+    font-size: .78rem;
+}
+
+.dq-history-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.dq-history-text {
+    font-size: .78rem;
+    color: #2e4836;
+}
+
+.dq-history-meta {
+    font-size: .64rem;
+    color: #8a9a8a;
+    margin-top: 2px;
+}
+
+.dq-history-empty {
+    font-size: .74rem;
+    color: #8a9a8a;
+    padding: 8px 10px;
+}
+
+.dq-history-row .rmg-btn {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 767px) {
+    .dq-chip {
+        font-size: .62rem;
+    }
+}
+
+/* Queue table: stable column budgets with the Actions column contained. */
+#dispatchQueueSection,
+#dispatchQueueSection #dqList,
+#dispatchQueueSection #dqList > .rmg-table-wrap { min-width: 0; max-width: 100%; }
+
+/* Never clip the row actions: if the table cannot fit, it scrolls instead of
+   hiding the right-most controls (the four icon buttons are ~130px wide). */
+#dispatchQueueSection #dqList > .rmg-table-wrap { overflow-x: auto; overflow-y: hidden; }
+
+#dispatchQueueSection #dqList .rmg-table :is(th, td) { white-space: normal; overflow-wrap: anywhere; }
+
+#dispatchQueueSection #dqList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) { white-space: nowrap; }
+
+#dispatchQueueSection #dqList .rmg-table :is(.rmg-type-chip, .rmg-status) {
+    display: inline-block;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+}
+
+#dispatchQueueSection #dqList .rmg-table .rmg-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 2px;
+}
+
+#dispatchQueueSection #dqList .rmg-table .rmg-actions > * { flex-shrink: 0; }
+
+/* History (past operating date): read-only, so edit affordances are muted. */
+#dispatchQueueSection.is-history .dq-grip { display: none; }
+
+#dispatchQueueSection.is-history .rmg-icon-btn,
+#dispatchQueueSection.is-history .dq-unavailable .rmg-btn { opacity: .5; }
+
+#dispatchQueueSection.is-history .rmg-icon-btn:hover {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* Published operating date: its official order is locked for that date, so the
+   same edit affordances are muted but the date stays fully visible. */
+#dispatchQueueSection.is-published-lock .dq-grip {
+    display: none;
+    visibility: hidden;
+}
+
+#dispatchQueueSection.is-published-lock .rmg-icon-btn,
+#dispatchQueueSection.is-published-lock .dq-unavailable .rmg-btn {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+#dispatchQueueSection.is-published-lock .rmg-icon-btn:hover {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+@media (min-width: 992px) {
+    #dispatchQueueSection #dqList > .rmg-table-wrap > .rmg-table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    /* The four row actions need ~130px inside the cell plus padding; a 108px
+       budget clipped the last button behind the wrap's overflow. */
+    #dispatchQueueSection #dqList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) { width: 152px; }
+
+    #dispatchQueueSection #dqList .rmg-table .dq-col-pos { width: 52px; }
+    #dispatchQueueSection #dqList .rmg-table .dq-col-terminal { width: 148px; }
+    #dispatchQueueSection #dqList .rmg-table .dq-col-actions { width: 152px; }
+
+    #dispatchQueueSection #dqList .rmg-table :is(th, td) { padding: 8px 6px; }
+
+    #dispatchQueueSection #dqList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) { padding-left: 4px; padding-right: 4px; }
+}
+
+@media (max-width: 1280px) {
+    #dispatchQueueSection #dqList .rmg-table tbody td { font-size: .72rem; }
+}
+
+@media (max-width: 991px) {
+    #dispatchQueueSection #dqList .rmg-table colgroup { display: none; }
+
+    #dispatchQueueSection #dqList .rmg-table :is(.rmg-th-actions, .rmg-td-actions) {
+        width: auto;
+        max-width: 100%;
+    }
+
+    #dispatchQueueSection #dqList .rmg-actions { flex-wrap: wrap; }
+}
+
+/* Pre-publish preview */
+.dq-preview-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    border: 1px solid #eccac5;
+    border-radius: 10px;
+    background: #fbe9e7;
+    color: #b94a48;
+    font-size: .74rem;
+    font-weight: 600;
+}
+
+.dq-preview-list .rmg-table { width: 100%; }
+
+.dq-preview-table .dq-preview-pos { width: 52px; }
+
+.dq-preview-table td.dq-preview-pos {
+    font-weight: 700;
+    color: #295738;
+    white-space: nowrap;
+}
+
+.dq-preview-table .dq-preview-bus { font-weight: 600; }
+
+.dq-preview-table .dq-preview-meta {
+    display: block;
+    margin-top: 2px;
+    font-size: .64rem;
+    color: #6f7f6f;
+}
+
+.dq-preview-table .dq-preview-status { white-space: nowrap; }
+
+.dq-preview-table .dq-driver-id {
+    display: block;
+    margin-top: 2px;
+    font-size: .62rem;
+    color: #8a948b;
+}
+
+@media (max-width: 640px) {
+    .dq-preview-table thead { display: none; }
+
+    .dq-preview-table, .dq-preview-table tbody, .dq-preview-table tr, .dq-preview-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .dq-preview-table tr {
+        margin-bottom: 8px;
+        border: 1px solid #e0e0d8;
+        border-radius: 10px;
+        padding: 6px 8px;
+    }
+
+    .dq-preview-table td { border: 0; padding: 2px 0; }
+
+    .dq-preview-table td::before {
+        content: attr(data-label);
+        display: inline-block;
+        min-width: 96px;
+        font-weight: 600;
+        color: #6f7f6f;
+    }
+}

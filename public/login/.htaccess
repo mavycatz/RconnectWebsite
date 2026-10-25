@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Ensure .php files are executed as PHP (prevents download of source)
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Internally rewrite clean URLs to .php files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+)$ $1.php [L,QSA]

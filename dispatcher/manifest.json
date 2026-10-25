@@ -1,0 +1,14 @@
+{
+  "name": "R-Connect Dispatcher",
+  "short_name": "Dispatcher",
+  "description": "Public Mini Bus Dispatch & Queue Management",
+  "start_url": "/dispatcher/",
+  "display": "standalone",
+  "background_color": "#fef8f3",
+  "theme_color": "#47613b",
+  "orientation": "portrait",
+  "icons": [
+    {"src": "/assets/images/passenger/buslogo.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/assets/images/passenger/buslogo.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}

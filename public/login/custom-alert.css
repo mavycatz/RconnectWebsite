@@ -1,0 +1,182 @@
+/* ==========================================
+   CUSTOM ALERT DIALOG
+   Theme: RConnect TMS
+   ========================================== */
+
+.custom-alert-overlay {
+  display: none !important;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.45);
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  pointer-events: none;
+}
+
+.custom-alert-overlay.active {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+.custom-alert-card {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.custom-alert-header {
+  padding: 20px 24px 16px;
+  text-align: center;
+}
+
+.custom-alert-header.success {
+  background: #a8d5ba;
+}
+
+.custom-alert-header.success .custom-alert-title {
+  color: #2e4836;
+}
+
+.custom-alert-header.error {
+  background: linear-gradient(135deg, #ff6b6b, #b30000);
+}
+
+.custom-alert-header.warning {
+  background: #fef3c7;
+}
+
+.custom-alert-header.warning .custom-alert-title {
+  color: #92400e;
+}
+
+.custom-alert-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-alert-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.custom-alert-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.custom-alert-body {
+  padding: 20px 24px 24px;
+}
+
+.custom-alert-message {
+  font-size: 0.9rem;
+  color: #4b5563;
+  text-align: center;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+
+.custom-alert-btn {
+  display: block;
+  width: 100%;
+  padding: 0 24px;
+  height: 46px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.custom-alert-btn:hover {
+  opacity: 0.9;
+}
+
+.custom-alert-btn.success {
+  background: #a8d5ba;
+  color: #2e4836;
+  border: 1px solid #8fbfa0;
+}
+
+.custom-alert-btn.error {
+  background: #b30000;
+  color: #fff;
+}
+
+.custom-alert-btn.confirm {
+  background: #295738;
+  color: #fff;
+}
+
+.custom-alert-btn.cancel {
+  background: #fff;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.custom-alert-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-alert-actions .custom-alert-btn {
+  flex: 1;
+}
+
+.custom-alert-btn-cancel {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  .custom-alert-overlay {
+    padding: 16px;
+    align-items: center;
+  }
+
+  .custom-alert-card {
+    max-width: 100%;
+    border-radius: 14px;
+  }
+
+  .custom-alert-header {
+    padding: 16px 20px 12px;
+  }
+
+  .custom-alert-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-alert-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-alert-title {
+    font-size: 1.05rem;
+  }
+
+  .custom-alert-body {
+    padding: 16px 20px 20px;
+  }
+
+  .custom-alert-btn {
+    height: 44px;
+    font-size: 0.9rem;
+  }
+}

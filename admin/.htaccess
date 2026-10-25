@@ -1,0 +1,81 @@
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteBase /admin/
+
+# =========================
+# GENERIC PAGE TOKEN ROUTE
+# =========================
+# admin/<page>/<token> → index.php?route=<page>&token=<token>
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-f0-9]{64})/?$ index.php?route=$1&token=$2 [L,QSA]
+
+# =========================
+# DASHBOARD API TOKEN ROUTES
+# =========================
+# admin/api/dashboard/<endpoint>/<token> → admin/api/dashboard/<endpoint>.php?token=<token>
+RewriteRule ^api/dashboard/([a-zA-Z0-9_-]+)/([a-f0-9]{64})/?$ api/dashboard/$1.php?token=$2 [L,QSA]
+
+# =========================
+# BLOCK DIRECT ACCESS TO INTERNAL DIRECTORIES & FILES
+# =========================
+# The dashboard view is intentionally reachable directly (it performs its own
+# Auth::check() + role guard server-side, and every data fetch re-authenticates
+# via the guarded /admin/api/* endpoints).
+RewriteCond %{REQUEST_URI} !^/(admin/)?views/dashboard/ [NC]
+RewriteRule ^views/ - [F,L]
+# api/ is NOT blocked at Apache level — PHP-level token validation in api/dashboard/init.php handles this.
+# Blocking ^api/ here would conflict with the API token rewrite (internal redirect would hit this rule).
+RewriteCond %{REQUEST_URI} !/admin/Controllers/update_profile\.php
+RewriteRule ^Controllers/ - [F,L]
+RewriteRule ^models/ - [F,L]
+RewriteRule ^services/ - [F,L]
+RewriteRule ^components/ - [F,L]
+RewriteRule ^modals/ - [F,L]
+RewriteRule ^print/ - [F,L]
+# ajax/ is NOT blocked — PHP-level auth in each file handles this.
+RewriteRule ^config/ - [F,L]
+RewriteRule ^Tripdashboard\.php$ - [F,L]
+
+# =========================
+# Skip existing files and folders
+# =========================
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# =========================
+# Exclude API routes from .php removal
+# =========================
+RewriteCond %{REQUEST_URI} !^/admin/api/ [NC]
+
+# Remove .php extension from URL
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^(.+)\.php$ /$1 [R=301,L]
+
+# Internally rewrite extensionless URLs to .php
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# Catch-all redirect for /login → /public/login/
+RewriteRule ^login(/.*)?$ /public/login/index.php [R=301,L]
+
+# =========================
+# Extensionless Page Routes (without token)
+# =========================
+# admin/<page> → index.php?route=<page>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/admin/api/ [NC]
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?route=$1 [L,QSA]
+
+# Exclude API from front controller
+RewriteCond %{REQUEST_URI} !^/admin/api/ [NC]
+
+# Front controller
+RewriteRule ^$ index.php?route=dashboard [L,QSA]
+RewriteRule ^ index.php [L]
+
+</IfModule>

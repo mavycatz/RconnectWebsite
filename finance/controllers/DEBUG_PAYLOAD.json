@@ -1,0 +1,26 @@
+{
+    "trip_report_id": 1,
+    "trip_group_code": "TRIP-1779690182",
+    "ai_summary": "The trip operations report for TRIP-1779690182 indicates a high passenger volume with 186 passengers, resulting in total revenue of $12,460.00. However, the report also highlights some areas of concern, including a 15-minute delay due to road clearing operations and potential discrepancies in dispatch consistency, fuel expenses, and fare remittance.",
+    "ai_category": "Transportation Operations",
+    "ai_confidence": "0.8",
+    "ai_insights": [
+        "Dispatch efficiency may be inconsistent, with potential discrepancies between reported revenue and passenger count.",
+        "Fuel usage appears to be higher than average for the Cabanatuan-Rizal route, warranting further investigation.",
+        "Operational anomalies, such as the 15-minute delay, may be related to market-day congestion near Rizal Public Market.",
+        "Unusual passenger patterns, including heavy volumes during morning market hours, may impact route efficiency.",
+        "Inspector observations and notes highlight the need for closer monitoring of vehicle maintenance and potential under-remittance of fares."
+    ],
+    "ai_risks": [
+        "Inaccurate dispatch reporting may lead to revenue losses or overpayment of expenses.",
+        "Excessive fuel consumption may result in increased operational costs and environmental impact.",
+        "Delays and congestion may negatively impact passenger satisfaction and loyalty.",
+        "Non-compliance with transportation regulations and policies may result in fines or penalties."
+    ],
+    "ai_recommendations": [
+        "Conduct a thorough review of dispatch records to ensure accuracy and consistency.",
+        "Verify fuel expenses against average consumption rates for the route and investigate any discrepancies.",
+        "Implement strategies to mitigate delays and congestion, such as adjusting route schedules or optimizing traffic flow.",
+        "Enhance inspector training and monitoring to ensure accurate reporting and compliance with regulations."
+    ]
+}

@@ -1,0 +1,28 @@
+.main-card {
+    width: 95%;
+    max-width: 420px;
+    margin: 120px auto;
+    background: #fef8f3;
+    border: 2px solid #c6d48c;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.input-group-text {
+    background: #fff;
+    border-right: none;
+}
+
+.form-control {
+    border-left: none;
+}
+
+.login-btn {
+    background: #4b794d;
+    border: none;
+}
+
+.login-btn:hover {
+    background: #3d6540;
+}

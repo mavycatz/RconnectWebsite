@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "trip_group_code": "TRIP-1779690182",
+        "route_id": 2,
+        "bus_id": 1,
+        "driver_id": 8,
+        "inspector_id": 1,
+        "trip_date": "2026-05-12",
+        "passenger_count": 186,
+        "total_revenue": "12460.00",
+        "fuel_cost": "3180.00",
+        "other_expenses": "920.00",
+        "odometer": 214783,
+        "notes": "Completed 9 round trips between Cabanatuan Terminal and Rizal, Nueva Ecija.\r\nHeavy passenger volume during morning market hours.\r\n15-minute delay near Barangay Poblacion due to road clearing operation.\r\nCollected student and senior citizen fare discounts during afternoon trips.\r\nVehicle inspected after final trip, no major issues reported.",
+        "ai_analysis_notes": "Review dispatch consistency between reported revenue and passenger count.\r\nVerify fuel expenses against average consumption for Cabanatuan-Rizal route operations.\r\nCheck for possible under-remittance during afternoon trips.\r\nInspect delay patterns caused by market-day congestion near Rizal Public Market.\r\nValidate odometer reading against total completed trips.",
+        "evidence_files": "[]",
+        "created_at": "2026-05-25 06:23:02"
+    }
+]

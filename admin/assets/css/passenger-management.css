@@ -1,0 +1,110 @@
+/* Passenger-specific adapters; the management shell, cards, filters, tables,
+   controls, and responsive layout come from role-management.css. */
+.passenger-management-page #mainContent {
+    background: radial-gradient(900px 380px at 12% -8%, rgba(125,164,83,.20), transparent 60%),
+        radial-gradient(900px 420px at 88% 0%, rgba(41,87,56,.10), transparent 55%),
+        linear-gradient(180deg, #e9eeda, #e1e8cd);
+}
+.passenger-management .psgr-stat-card.rmg-sum-card { flex-direction:row-reverse; justify-content:flex-end; cursor:pointer; }
+.passenger-management .psgr-stat-card.rmg-sum-card > div:not(.rmg-sum-icon):not(.psgr-stat-accent) { flex:1; min-width:0; }
+.passenger-management .psgr-stat-accent { display:none; }
+.passenger-management .psgr-stat-icon.rmg-sum-icon { border:0; }
+.passenger-management .psgr-stat-icon i { font-size:inherit; color:inherit; }
+.passenger-management .psgr-stat-card.active { border-color:#295738; box-shadow:0 0 0 2px rgba(41,87,56,.12); }
+.passenger-management .psgr-mini-stats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.passenger-management .psgr-mini {
+    display:inline-flex; align-items:center; gap:6px; margin:0; padding:5px 10px;
+    background:#fffdf8; border:1px solid #e5e0a4; border-radius:10px;
+    color:#6b7a63; font-size:.65rem; font-weight:600; line-height:1.4;
+    box-shadow:0 1px 3px rgba(41,87,56,.04);
+}
+.passenger-management .psgr-mini > i { color:#7da453; font-size:.75rem; }
+.passenger-management .psgr-mini > b {
+    display:inline-flex; align-items:center; justify-content:center; min-width:24px;
+    padding:2px 6px; background:#eef5e7; border-radius:6px; color:#295738;
+    font-size:.67rem; font-weight:800; font-variant-numeric:tabular-nums;
+}
+.passenger-management .psgr-mini.active > i { color:#fff; }
+.passenger-management .psgr-mini.active > b { background:rgba(255,255,255,.18); color:#fff; }
+.passenger-management #psgrPag .rmg-pg-info { display:flex; flex-direction:column; gap:4px; min-width:0; line-height:1.5; }
+.passenger-management #psgrPag .psgr-pag-page { font-size:.72rem; font-weight:700; color:#295738; }
+.passenger-management #psgrPag .psgr-pag-range { font-size:.66rem; color:#8a9a8a; overflow-wrap:anywhere; }
+.passenger-management #psgrPag { padding:10px 0 2px; gap:10px; }
+.passenger-management .psgr-mini.active, .passenger-management .psgr-quick-btn.active { background:#295738; border-color:#295738; color:#fff; }
+.passenger-management .psgr-quick-btn { border:1px solid #e5e0a4; border-radius:20px; color:#6f6d75; font-size:.72rem; padding:6px 12px; }
+.passenger-management .psgr-more-filters { border:1px dashed #e5e0a4; padding:9px 11px; border-radius:16px; }
+.passenger-management .psgr-more-filters :is(input,select) { height:auto; border:1px solid #e5e0a4; border-radius:9px; padding:6px 8px; font-size:.72rem; }
+.passenger-management .psgr-table thead { background:transparent; border:0; }
+.passenger-management .psgr-cell-id { font-size:.76rem; }
+.passenger-management .psgr-table .rmg-person { min-width:200px; }
+/* Fit only the passenger directory; retain the other passenger tables. */
+#passengerManagementSection,
+#passengerManagementSection .psgr,
+#passengerManagementSection #psgrTableWrap,
+#passengerManagementSection #psgrTableWrap > .psgr-table-scroll { min-width:0; max-width:100%; }
+#passengerManagementSection #psgrTableWrap > .psgr-table-scroll { overflow:hidden; }
+#passengerManagementSection #psgrTableWrap .psgr-table :is(th,td) { white-space:normal; overflow-wrap:anywhere; }
+#passengerManagementSection #psgrTableWrap .rmg-person { min-width:0; max-width:100%; }
+#passengerManagementSection #psgrTableWrap .rmg-person > :last-child { min-width:0; max-width:100%; flex:1; }
+#passengerManagementSection #psgrTableWrap :is(.rmg-person-name,.rmg-person-sub,.rmg-directory-text) { display:block; min-width:0; max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+#passengerManagementSection #psgrTableWrap .rmg-type-chip { display:inline-block; min-width:0; max-width:100%; white-space:normal; overflow-wrap:anywhere; vertical-align:middle; }
+#passengerManagementSection #psgrTableWrap :is(.psgr-verify,.psgr-badge) { display:inline-block; min-width:0; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; vertical-align:middle; }
+#passengerManagementSection #psgrTableWrap .psgr-table :is(.rmg-th-actions,.rmg-td-actions) { white-space:nowrap; }
+#passengerManagementSection #psgrTableWrap .rmg-actions { display:inline-flex; align-items:center; justify-content:flex-end; flex-wrap:nowrap; gap:2px; }
+#passengerManagementSection #psgrTableWrap .rmg-actions > * { flex-shrink:0; }
+@media(min-width:992px) {
+    #passengerManagementSection #psgrTableWrap .psgr-table { table-layout:fixed; width:100%; min-width:0; }
+    #passengerManagementSection #psgrTableWrap .psgr-table :is(th,td) { padding:8px 6px; }
+    #passengerManagementSection #psgrTableWrap .psgr-table :is(.rmg-th-actions,.rmg-td-actions) { width:170px; padding-left:4px; padding-right:4px; }
+}
+@media(max-width:1280px) {
+    #passengerManagementSection #psgrTableWrap .psgr-table tbody td { font-size:.76rem; }
+}
+.passenger-management .psgr-verify, .passenger-management .psgr-badge {
+    font-size:.64rem; padding:3px 10px; border-radius:20px; border:1px solid transparent;
+}
+.passenger-management .psgr-verify-verified, .passenger-management .psgr-badge-active { color:#2e7d32; background:#eaf6ea; border-color:#c7e3c7; }
+.passenger-management .psgr-verify-pending, .passenger-management .psgr-badge-pending { color:#9a6b12; background:#fdf5e3; border-color:#ecd9ab; }
+.passenger-management .psgr-verify-rejected, .passenger-management .psgr-badge-blocked { color:#b94a48; background:#fbe9e7; border-color:#eccac5; }
+.passenger-management-page :is(.psgr-btn,.bag-btn) {
+    display:inline-flex; align-items:center; gap:6px; height:auto; border-radius:20px;
+    font-size:.78rem; font-weight:600; padding:8px 16px; border:1px solid #d8d2b6;
+    background:#fff; color:#295738; text-decoration:none; cursor:pointer;
+}
+.passenger-management-page :is(.psgr-btn-primary,.bag-btn-primary) { background:#295738; border-color:#295738; color:#fff; }
+.passenger-management-page :is(.psgr-btn,.bag-btn):disabled { opacity:.5; cursor:not-allowed; }
+.passenger-management-page :is(.psgr-btn-sm,.bag-btn-sm) { padding:6px 12px; font-size:.72rem; }
+.passenger-management-page .psgr-panel-head { color:#295738; }
+.passenger-management-page .psgr-panel-head .btn-close { filter:none; }
+.passenger-management-page .psgr-panel-name { color:#234d31; font-size:1.2rem; white-space:normal; max-width:none; }
+.passenger-management-page .psgr-panel-meta { color:#63815f; }
+.passenger-management-page .psgr-panel-tabs { background:transparent; }
+.passenger-management-page .psgr-panel-card { border:1px solid #eef1e4; border-radius:16px; box-shadow:0 1px 3px rgba(41,87,56,.04); }
+.passenger-management-page .psgr-panel-card-head { background:#fafbf3; color:#295738; padding:10px 14px; }
+.passenger-management-page .modal :is(.modal-content,.modal-body,.modal-header,.modal-footer) { font-family:'Poppins',sans-serif; }
+.passenger-management-page .modal-content:not(.custom-alert-card) { border:1px solid #dde5cf !important; border-radius:22px !important; background:#fffdf8 !important; box-shadow:0 18px 50px rgba(41,87,56,.18) !important; }
+.passenger-management-page .modal-header { background:linear-gradient(135deg,#e7f0de,#fdf6ee 60%,#fef8f3) !important; border-bottom:1px solid #e5e0a4 !important; }
+.passenger-management-page .modal-footer { background:#fdfbf4; border-top:1px solid #eef1e4; }
+.passenger-management-page .bag-wrap { max-width:1440px; margin:0 auto; }
+.passenger-management-page :is(.bag-pag,.psgr-pag) { background:transparent; border-top:0; font-size:.72rem; padding:0; margin-top:14px; }
+.passenger-management-page .bag-table { min-width:1000px; }
+.passenger-management .manifest-extracted-table { min-width:900px; }
+.passenger-management-page .rmg-filter input[type="text"] { min-width:0; border:1px solid #e5e0a4; border-radius:9px; padding:6px 8px; font-size:.72rem; }
+.passenger-management-page :is(#statusModal,#editModal,#tripSheetModal,#importModal) .row.g-0 > .col-lg-4 { display:none !important; }
+.passenger-management-page :is(#statusModal,#editModal,#tripSheetModal,#importModal) .row.g-0 > .col-lg-8 { flex:0 0 100%; max-width:100%; }
+.passenger-management-page .modal :is(.modal-header h4,.modal-header h5) { font-size:1.08rem !important; font-weight:800 !important; color:#234d31 !important; }
+.passenger-management-page .modal-footer .btn { flex:0 0 auto !important; height:auto !important; padding:8px 16px; border-radius:20px !important; font-size:.78rem !important; }
+.passenger-management-page .modal-footer :is(#saveStatusBtn,#saveEditBtn,#importConfirmBtn) { background:#295738 !important; }
+@media(max-width:991px) {
+    #passengerManagementSection #psgrTableWrap .psgr-table { min-width:0; }
+    #passengerManagementSection #psgrTableWrap .psgr-table colgroup { display:none; }
+    #passengerManagementSection #psgrTableWrap .psgr-table td { min-width:0; max-width:100%; width:100%; }
+    #passengerManagementSection #psgrTableWrap .psgr-table td > * { min-width:0; max-width:100%; }
+    #passengerManagementSection #psgrTableWrap .psgr-table td::before { flex-shrink:0; }
+    #passengerManagementSection #psgrTableWrap .rmg-directory-text { flex:1; }
+    #passengerManagementSection #psgrTableWrap .rmg-actions { flex-wrap:wrap; }
+}
+@media(max-width:900px) {
+    .passenger-management-page .bag-table { min-width:0; }
+    .passenger-management .manifest-extracted-table { min-width:0; }
+}

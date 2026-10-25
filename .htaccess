@@ -1,0 +1,38 @@
+# =========================
+# PHP Session Security
+# =========================
+
+php_value session.save_path "/public_html/storage/sessions"
+
+php_flag session.use_only_cookies On
+php_flag session.use_strict_mode On
+php_flag session.use_trans_sid Off
+
+php_value session.cookie_httponly 1
+php_value session.cookie_secure 1
+php_value session.cookie_samesite Strict
+
+# =========================
+# Internal Rewrite
+# =========================
+
+RewriteEngine On
+
+RewriteRule ^$ passenger/index.php?route=login [L,QSA]
+
+# =========================
+# Passenger Clean URLs
+# =========================
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^passenger/(.*)$ passenger/index.php?route=$1 [L,QSA]
+
+# =========================
+# Portal Key Login Protection
+# =========================
+
+RewriteRule ^([a-f0-9]{32})$ public/login/index.php?portal=$1 [L,QSA]
+RewriteRule ^([a-f0-9]{32})/(verify-otp|forgot-password|reset-password|verify-reset-otp)$ public/login/$2.php?portal=$1 [L,QSA]
+
+RewriteRule ^logout$ public/logout/logout.php [L,QSA]

@@ -1,0 +1,36 @@
+-- R-Connect: consolidate remittance records to one per driver per business date
+--
+-- The remittance flow already upserts by (driver_id, business_date). This file
+-- documents how to audit and repair legacy duplicate records safely, then
+-- enforce the rule at the database level.
+--
+-- 1) AUDIT duplicates (expected: no rows after the consolidation tool runs):
+--
+-- SELECT driver_id,
+--        COALESCE(business_date, DATE(created_at)) AS business_day,
+--        COUNT(*) AS records,
+--        GROUP_CONCAT(id ORDER BY id) AS ids,
+--        GROUP_CONCAT(DISTINCT status ORDER BY status) AS statuses
+-- FROM remittance_logs
+-- GROUP BY driver_id, COALESCE(business_date, DATE(created_at))
+-- HAVING records > 1;
+--
+-- 2) CONSOLIDATE safely (preview first, then apply):
+--
+--    php finance/tools/consolidate_remittance_duplicates.php
+--    php finance/tools/consolidate_remittance_duplicates.php --apply
+--
+--    The tool groups by driver + business date only, keeps the resolved or
+--    finalized record, sums split amounts (or counts true duplicates once),
+--    preserves resolution details, audits every merge as
+--    "Finance / Remittance Consolidated", then attempts the unique index below.
+--
+-- 3) ENFORCE one remittance per driver per business date.
+--    Apply only after the audit above returns no rows:
+--
+-- ALTER TABLE `remittance_logs`
+--     ADD UNIQUE INDEX `uq_remittance_driver_business` (`driver_id`, `business_date`);
+--
+-- Note: unique indexes allow multiple NULL business_date rows. The
+-- consolidation tool sets business_date on every kept record, so repaired data
+-- is fully covered while un-repaired legacy rows are not silently rejected.
